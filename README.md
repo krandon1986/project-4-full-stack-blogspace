@@ -195,7 +195,7 @@ In this section, you will look the user stories that is use to help implement ce
 
 | Bug | Solution |
 | --------------- | --------------- |
-| 1. I was unable to delete ny posted comment | Spelling error in the code|
+| 1. I was unable to delete my posted comment | Spelling error in the code|
 
 ## Deployment
 This project was deployed in Heroduk using the Code Institute's terminal.
