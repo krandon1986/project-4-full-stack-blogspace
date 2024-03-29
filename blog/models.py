@@ -6,6 +6,9 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Creating a Post model
 class Post(models.Model):
+    """
+    Store a single blog post entry related to :model: `auth.User`.
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
@@ -24,6 +27,10 @@ class Post(models.Model):
 
 # Creating a Comment Model
 class Comment(models.Model):
+    """
+    Store a single comment entry related to :model: `auth.User`
+    and :model: `blog.Post`.
+    """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
     body = models.TextField()

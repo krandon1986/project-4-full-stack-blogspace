@@ -1,10 +1,14 @@
 from django.contrib import admin
-from .models import Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Post, Comment
 
-# Updating theadmin page's layout and format
+# Updating the admin page's layout and format
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
+    """
+    Lists fields for display in admin, fields for search,
+    field filter, fields to prepopulate and rich-text editor.
+    """
 
     list_display = ('title', 'slug', 'status', 'created_on')
     search_field = ['title', 'content']

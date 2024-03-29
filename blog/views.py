@@ -6,10 +6,13 @@ from .models import Post, Comment
 from .forms import CommentForm
 
 # Create your views here.
+
+
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
     paginate_by = 3
+
 
 def post_detail(request, slug):
     """
@@ -19,7 +22,6 @@ def post_detail(request, slug):
 
     ``post``
         An instance of :model: `blog.Post`.
-        
     **Template:**
 
     :template: `blog/post_detail.html`
@@ -43,7 +45,6 @@ def post_detail(request, slug):
 
     comment_form = CommentForm()
 
-    
     return render(
         request,
         "blog/post_detail.html",
@@ -54,6 +55,7 @@ def post_detail(request, slug):
             "comment_form": comment_form,
         },
     )
+
 
 def comment_edit(request, slug, comment_id):
     """
@@ -67,13 +69,14 @@ def comment_edit(request, slug, comment_id):
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
 
-        if  comment_form.is_valid() and comment.author == request.user:
+        if comment_form.is_valid() and comment.author == request.user:
             comment.post = post
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+            'Error updating comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
@@ -90,6 +93,7 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete you own comments!')
+        messages.add_message(request, messages.ERROR,
+        'You can only delete you own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
