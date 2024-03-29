@@ -208,3 +208,11 @@ This project was deployed in Heroduk using the Code Institute's terminal.
     - Set the buildbacks to 'Python' and 'NodeJS' in that order. 
     - Link the Heroku app to the blogspace repository.
     - Click [Deploy Branch](https://blogspace-97bdcd968196.herokuapp.com/)
+
+## Credit
+- The 'I Think therefore I Blog' tutorial is what I use to build my project. 
+
+- General Guidance
+    - [Font](https://fonts.google.com/)
+    - [Icons](https://fontawesome.com/)
+    - [color](https://coolors.co/)
