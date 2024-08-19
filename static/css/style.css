@@ -158,11 +158,11 @@ body {
 }
 
 .faded {
-    color: #6c757d;
+    color: rgb(172, 175, 175);
 }
 
 .approval {
-    color: #dc3545;
+    color: rgb(222, 146, 168)
 }
 
 
