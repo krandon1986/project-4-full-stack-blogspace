@@ -157,7 +157,13 @@ body {
     border: none;
 }
 
+.faded {
+    color: #6c757d;
+}
 
+.approval {
+    color: #dc3545;
+}
 
 
 
