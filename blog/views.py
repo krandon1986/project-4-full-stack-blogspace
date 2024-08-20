@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 # Create your views here.
 
@@ -97,3 +98,32 @@ def comment_delete(request, slug, comment_id):
         'You can only delete you own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+@login_required
+def add_blog (request):
+    """
+    Add a blog to the site
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only site owner can post blog on this site.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            messages.success(request, 'Successfully added a new blog!')
+            return redirect(reverse('post_detail', args=[post.id]))
+        else:
+            messages.error(request, 'Failed to post a blog. Be sure the form is valid.')
+    else:
+        form = PostForm()
+
+    template = 'blog/add_blog.html'
+    context = {
+        'form', form,
+    }
+
+    return render(request, template, context)
+   
+
