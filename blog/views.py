@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import ( 
+    render, get_object_or_404, reverse, redirect
+)
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -100,7 +102,7 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 @login_required
-def add_blog(request):
+def add_blog(request, slug=None):
     """
     Add a blog to the site
     """
@@ -115,7 +117,7 @@ def add_blog(request):
             post = form.save()
             messages.add_message(request, messages.SUCCESS,
              'Successfully added a new blog!')
-            return redirect(reverse('post_detail', args=[slug]))
+            return redirect(reverse('home'))
         else:
             messages.add_message(request, messages.ERROR,
              'Failed to post a blog. Be sure the form is valid.')
