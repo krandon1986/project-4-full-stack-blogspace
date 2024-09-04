@@ -115,16 +115,16 @@ def add_blog(request):
             post = form.save()
             messages.add_message(request, messages.SUCCESS,
              'Successfully added a new blog!')
-            return redirect(reverse('post_detail', args=[post.id]))
+            return redirect(reverse('post_detail', args=[slug]))
         else:
             messages.add_message(request, messages.ERROR,
              'Failed to post a blog. Be sure the form is valid.')
     else:
         form = PostForm()
 
-    template = 'blog/add_blog.html'
+    template = "blog/add_blog.html"
     context = {
-        'form': form,
+        "form": form,
     }
 
     return render(request, template, context)
