@@ -100,30 +100,31 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 @login_required
-def add_blog (request):
+def add_blog(request):
     """
     Add a blog to the site
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only site owner can post blog on this site.')
+        messages.add_message(request, messages.ERROR,
+            'Sorry, only site owner can post blog on this site.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
-            messages.success(request, 'Successfully added a new blog!')
+            messages.add_message(request, messages.SUCCESS,
+             'Successfully added a new blog!')
             return redirect(reverse('post_detail', args=[post.id]))
         else:
-            messages.error(request, 'Failed to post a blog. Be sure the form is valid.')
+            messages.add_message(request, messages.ERROR,
+             'Failed to post a blog. Be sure the form is valid.')
     else:
         form = PostForm()
 
     template = 'blog/add_blog.html'
     context = {
-        'form', form,
+        'form': form,
     }
 
     return render(request, template, context)
-   
-
