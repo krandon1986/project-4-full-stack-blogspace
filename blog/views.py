@@ -116,7 +116,7 @@ def add_blog(request, slug=None):
         if form.is_valid():
             post = form.save()
             messages.add_message(request, messages.SUCCESS,
-             'Successfully added a new blog!')
+                'Successfully added a new blog!')
             return redirect(reverse('home'))
         else:
             messages.add_message(request, messages.ERROR,
@@ -130,3 +130,53 @@ def add_blog(request, slug=None):
     }
 
     return render(request, template, context)
+
+@login_required
+def edit_blog(request, slug):
+    """
+    Edit a blog in the site
+    """
+    if not request.user.is_superuser:
+        messages.add_message(request, messages.ERROR,
+            'Sorry, only site owner can post blog on this site.')
+        return redirect(reverse('home'))
+    
+    post = get_object_or_404(Post, slug=slug)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                'Successfully updated blog!')
+            return redirect(reverse('home'))
+        else:
+            messages.add_message(request, messages.ERROR,
+             'Failed to update the blog. Be sure the form is valid.')
+    else:
+        form = PostForm(instance=post)
+        messages.add_message(request, messages.INFO,
+             f'You are editing {post.title}')
+
+    template = 'blog/edit_blog.html'
+    context = {
+        'form': form,
+        'post': post,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def delete_blog(request, slug):
+    """
+    Edit a blog in the site
+    """
+    if not request.user.is_superuser:
+        messages.add_message(request, messages.ERROR,
+            'Sorry, only site owner can post blog on this site.')
+        return redirect(reverse('home'))  
+
+    post = get_object_or_404(Post, slug=slug)
+    post.delete()
+    messages.add_message(request, messages.SUCCESS,
+        'Blog post deleted!')
+    return redirect(reverse('home'))

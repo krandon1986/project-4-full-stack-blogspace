@@ -153,8 +153,9 @@ USE_I18N = True
 USE_TZ = True
 
 MESSAGE_TAGS = {
-    messages.SUCCESS: 'alert-success',
-    messages.ERROR: 'alert-danger',
+    messages.SUCCESS: 'alert alert-success',
+    messages.ERROR: 'alert alert-danger',
+    messages.INFO: 'alert alert-info',
 }
 
 
