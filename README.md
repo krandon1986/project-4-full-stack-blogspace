@@ -117,7 +117,63 @@ To see the full list of the User Stories for BlogSpace, click [here](https://git
 
     - The superuser can gain access all blogs and comment and is able to read, create, update, and delete it from the Django Admin. 
 
-    ![Manage Post](static/screenshots/User-Story-Manage-Post-(2).png) 
+    ![Manage Post Admin](static/screenshots/User-Story-Manage-Post-(2).png)
+
+    - As the user logged in to the site as a superuser, Blog Post page appear in the navigation bar that will only appear if the user has superuser status. 
+    - Under each blog post on the home page, there will be an edit and delete button. These buttons can only be seen by the superuser. 
+
+    ![Home Page as a Superuser](static/screenshots/website_2.png) 
+
+    - As a superuser, they can write a new blog post on the site without going on the site admin page. 
+
+    ![Add Blog 1](static/screenshots/User-Story-Manage-Post-(3).png)
+
+    - After finishing, the superuser can post their blog onto the site.
+
+    ![Add Blog 2](static/screenshots/User-Story-Manage-Post-(4).png)
+
+    - After posting a new blog, the user is redirected back to the home page where they will receive a success message.
+
+    ![New Blog Message](static/screenshots/User-Story-Manage-Post-(5).png)
+
+    - The new blog that created on the site can be seen at the end of the page of the home page.
+
+    ![New Blog](static/screenshots/User-Story-Manage-Post-(6).png) 
+
+    - Inside the new blog post, the edit button and the delete button is also seen on post.
+
+    ![Edit Blog 1](static/screenshots/User-Story-Manage-Post-(7).png)
+
+    - After clicking the edit button, the user is refered to the edit page that is similar add page.
+    - The field boxes will be populated by the post the user wants to update. 
+
+    ![Edit Blog 2](static/screenshots/User-Story-Manage-Post-(8).png)
+
+    - After adding a second paragraph on the post, the superuser has to put 'p' tag on each paragragh to ensure that there are separated. 
+
+    ![Edit Blog 3](static/screenshots/User-Story-Manage-Post-(9).png) 
+
+    - Once updated, the user can be redirected the home page with success message, telling the user that blog post has been updated.
+
+    ![Edit Blog Message](static/screenshots/User-Story-Manage-Post-(10).png)
+
+    - Going onto the blog post that was edited, the user can see the second paragragh was updated by them.
+
+    ![Edit Blog 4](static/screenshots/User-Story-Manage-Post-(11).png) 
+
+    - To delete the blog post, the user can click the delete button underneath the post they want to get rid of. 
+
+    ![Delete Blog 1](static/screenshots/User-Story-Manage-Post-(12).png)
+
+    - Once the delete button is click, the user is redirected to the first page of the home page. 
+    - A success message will be displayed, telling the user that the blog post is deleted. 
+
+    ![Delete Blog Message](static/screenshots/User-Story-Manage-Post-(13).png)
+
+    - If the user go back to the final page of the home page, they will find that the blog post is successfully deleted. 
+
+    ![Delete Blog 2](static/screenshots/User-Story-Manage-Post-(14).png)
+
 
 - __Modify or Delete Comments__
     - User can edited or delete their comment they have posted.
@@ -169,25 +225,51 @@ To see the full list of the User Stories for BlogSpace, click [here](https://git
 ## Testing
 
 - HTML Validator
-    - [Home](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2F)
+    - No Errors are found via W3C validator: [Home](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2F)
+    - No Errors are found via W3C validator: [Login](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2Faccounts%2Flogin%2F)
+    - There are four errors found via W3C validator, which can't be corrected as this page is created by Django: [Register](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2Faccounts%2Fsignup%2F) 
+    - No Errors are found via W3C validator, however there is a warning about a lack of heading in the article class: [Blog Detail](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2Fpost_detail%2Fbreakpoints-or-breaking-point-surviving-javascript-debugging%2F#l81c43)
+    - No Errors are found via W3C validator: [Add Blog](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2Fadd%2F)
+    - No Errors are found via W3C validator: [Edit Blog](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2Fpost_detail%2Fedit%2Fbreakpoints-or-breaking-point-surviving-javascript-debugging%2F)
+    - No Errors are found via W3C validator: [Logoff](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2F)
+
+- CSS Validator
+    - There are no errors found on the CSS page, however there are couple of warnings found on the [CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fblogspace-97bdcd968196.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en). 
 
 - Accessibility
 
-    - Home Page
+    - The Log-in page score minimum of 88% due to the image elements not having attributes. 
+    - The Edit-Blog page scores a minimum of 89% due to links not having discenible names and the heading elements not being in sequentially descending order
+    - All the other pages (Home, Register, Blog Detail, Blog Post and Logout) scores around 93%, 94% and 95% due to the background and foreground color not having a sufficent contract ratio.
 
-        ![Index](static/screenshots/accessibility-(1)-home.png)
+        - Home Page
 
-    - Post Page
+            ![Index](static/screenshots/accessibility-(1)-home.png)
 
-        ![Post](static/screenshots/accessibility_(2)_post_page.png)
+        - Post Page
 
-    - Sign Out
+            ![Post](static/screenshots/accessibility_(2)_post_page.png)
 
-        ![Signout](static/screenshots/accessibility_(3)_signout.png)
+        - Sign Out
 
-    - Sign Up
+            ![Signout](static/screenshots/accessibility_(3)_signout.png)
 
-        ![SignUp](static/screenshots/accessibility_(4)_signup.png)
+        - Sign Up
+
+            ![SignUp](static/screenshots/accessibility_(4)_signup.png)
+
+        - Log In
+
+            ![LogIn](static/screenshots/accessibility_(5)_login.png)
+
+        - Add Blog
+
+            ![AddBlog](static/screenshots/accessibility_(6)_add_blog.png)
+
+        - Edit Blog
+
+            ![EditBlog](static/screenshots/accessibility_(7)_edit_blog.png)
+
 
 - Mobile Responsiveness
     - The lowest to highest maximum screen width for responsive design was done from 338px to 912px.   
@@ -198,7 +280,7 @@ To see the full list of the User Stories for BlogSpace, click [here](https://git
 | Bug | Solution |
 | --------------- | --------------- |
 | 1. I was unable to delete my posted comment | Spelling error in the code|
-
+| 2. The Add Blog page couldn't be found | In the urls.py, url path for post_detail page was "path('<slug:slug>/', views.post_detail, name='post_detail')" instead of "path('post_detail/<slug:slug>/', views.post_detail, name='post_detail')"
 ## Deployment
 This project was deployed in Heroduk using the Code Institute's terminal.
 - Step for deployment:
