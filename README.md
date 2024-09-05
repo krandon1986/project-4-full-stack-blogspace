@@ -51,7 +51,9 @@ This is the diagram of what database is going to be stored on my blog site. The 
 
 
 ## User Stories
-In this section, you will look the user stories that is use to help implement certain feature in the certain part on the site. 
+In this section, you will look the user stories that is use to help implement certain feature in the certain part on the site.
+
+To see the full list of the User Stories for BlogSpace, click [here](https://github.com/users/krandon1986/projects/6/views/1)
 
 - __Site Pagination__
     -   First stage of putting features on the site is paginated list of post, so that the site user can select any post to view.
