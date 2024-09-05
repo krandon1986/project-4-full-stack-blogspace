@@ -9,7 +9,14 @@
                 <!--Post title in h1 tags-->
                 <h1 class="post_list">{{ post.title }}</h1>
                 <!--Post author goes here | the post's created date goes here-->
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}
+                    {% if request.user.is_superuser %}
+                        <small class="m1-3">
+                            <a href="{% url 'edit_blog' post.slug %}">Edit</a>
+                            <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
+                        </small>
+                    {% endif %}
+                </p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <img src="{% static 'images/default.jpg' %}" class="scale"  alt="placeholder">
