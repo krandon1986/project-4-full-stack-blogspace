@@ -1,6 +1,4 @@
-{% extends "base.html" %} {% block content %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} {% block content %} {% load static %} {% load crispy_forms_tags %}
 
 <div class="masthead">
     <div class="container">
@@ -9,17 +7,17 @@
                 <!--Post title in h1 tags-->
                 <h1 class="post_list">{{ post.title }}</h1>
                 <!--Post author goes here | the post's created date goes here-->
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}
-                    {% if request.user.is_superuser %}
-                        <small class="m1-3">
-                            <a href="{% url 'edit_blog' post.slug %}">Edit</a>
-                            <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
-                        </small>
+                <p class="post-subtitle">
+                    {{ post.author }} | {{ post.created_on }} {% if request.user.is_superuser %}
+                    <small class="m1-3">
+                        <a href="{% url 'edit_blog' post.slug %}">Edit</a>
+                        <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
+                    </small>
                     {% endif %}
                 </p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/default.jpg' %}" class="scale"  alt="placeholder">
+                <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder" />
             </div>
         </div>
     </div>
@@ -27,7 +25,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col card mb-4 mt-3 left  top">
+        <div class="col card mb-4 mt-3 left top">
             <div class="card-body">
                 <!--The post content goes inside the card-text-->
                 <!--Use the | safe filter inside the template tags-->
@@ -40,29 +38,27 @@
     <!-- Displaying count of comments -->
     <div class="row">
         <div class="col-12">
-            <strong class="text-secondary">
-                <i class="far fa-comments"></i> {{ comment_count }}
-            </strong>
+            <strong class="text-secondary"> <i class="far fa-comments"></i> {{ comment_count }} </strong>
         </div>
         <div class="col-12">
-            <hr>
+            <hr />
         </div>
     </div>
     <!-- Displaying Comments -->
     <div class="row">
-        <div class="col-md-8 card mb-4 mt-3 ">
+        <div class="col-md-8 card mb-4 mt-3">
             <h3>Comments:</h3>
             <div class="card-body">
                 <!-- We want a for loop inside the empty control tags to interate through each
                 coment in comments -->
                 {% for comment in comments %}
-                <div class="p-2 comments {% if not comment.approved and comment.author == user %}
-                    faded{% elif not comment.approved %} d-none{% endif %}">
-                    <p class="font-weight-bold"> 
+                <div class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
+                    <p class="font-weight-bold">
                         {{ comment.author }}
                         <span class="font-weight-normal">
                             {{ comment.created_on }}
-                        </span> wrote:
+                        </span>
+                        wrote:
                     </p>
                     <div id="comment{{ comment.id }}">
                         {{ comment.body | linebreaks }}
@@ -71,8 +67,7 @@
                     <p class="approval">
                         This comment is awaiting approval
                     </p>
-                    {% endif %}
-                    {% if user.is_authenticated and comment.author == user %}
+                    {% endif %} {% if user.is_authenticated and comment.author == user %}
                     <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
                     <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
@@ -88,8 +83,7 @@
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
                 <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token  %}
+                    {{ comment_form | crispy }} {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
                 {% else %}
@@ -108,8 +102,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete your comment?
-                As this action cannot be undone!
+                Are you sure you want to delete your comment? As this action cannot be undone!
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -119,8 +112,6 @@
     </div>
 </div>
 
-{% endblock content %}
-
-{% block extras %}
+{% endblock content %} {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

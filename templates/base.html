@@ -1,9 +1,4 @@
-{% load static %}
-
-{% url 'home' as home_url %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
+{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -42,10 +37,9 @@
                         </li>
                         {% if request.user.is_superuser %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == add_blog_url %}active" aria-current="page{% endif %}" href="{% url 'add_blog' %}">Blog Post</a>                           
+                            <a class="nav-link {% if request.path == add_blog_url %}active" aria-current="page{% endif %}" href="{% url 'add_blog' %}">Blog Post</a>
                         </li>
-                        {% endif %}
-                        {% else %}
+                        {% endif %} {% else %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}" href="{% url 'account_signup' %}">Register</a>
                         </li>

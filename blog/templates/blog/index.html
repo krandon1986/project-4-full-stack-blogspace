@@ -1,6 +1,4 @@
-{% extends "base.html" %} 
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 <!--index.html contents starts here-->
 <div class="container-fluid">
@@ -14,9 +12,9 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
-                                <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                                <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image" />
                                 {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
+                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}" />
                                 {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Author: {{ post.author }}</p>
@@ -30,10 +28,10 @@
                             <hr />
                             <p class="card-text text-muted h6">{{ post.created_on }}</p>
                             {% if request.user.is_superuser %}
-                                <small class="m1-3">
-                                    <a href="{% url 'edit_blog' post.slug %}">Edit</a>
-                                    <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
-                                </small>
+                            <small class="m1-3">
+                                <a href="{% url 'edit_blog' post.slug %}">Edit</a>
+                                <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
+                            </small>
                             {% endif %}
                         </div>
                     </div>
@@ -51,8 +49,7 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
+            {% endif %} {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a></li>
             {% endif %}
         </ul>
@@ -61,9 +58,5 @@
 </div>
 
 <!--index.html content ends here-->
-{% endblock %}
-
-{% block copyright %}
-    Copyright 2024 Karim Randon
-{% endblock %}
+{% endblock %} {% block copyright %} Copyright 2024 Karim Randon {% endblock %}
 
