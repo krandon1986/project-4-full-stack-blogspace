@@ -52,7 +52,7 @@
                 <!-- We want a for loop inside the empty control tags to interate through each
                 coment in comments -->
                 {% for comment in comments %}
-                <div class="p-2 comments {% if not comment.approved and comment.writer == user %} faded{% elif not comment.approved_comment %} d-none{% endif %}">
+                <div class="p-2 comments {% if not comment.approved_comment and comment.writer == user %} faded{% elif not comment.approved_comment %} d-none{% endif %}">
                     <p class="font-weight-bold">
                         {{ comment.writer }}
                         <span class="font-weight-normal">
@@ -63,7 +63,7 @@
                     <div id="comment{{ comment.id }}">
                         {{ comment.body | linebreaks }}
                     </div>
-                    {% if not comment.approved and comment.writer == user %}
+                    {% if not comment.approved_comment and comment.writer == user %}
                     <p class="approval">
                         This comment is awaiting approval
                     </p>
