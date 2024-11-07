@@ -10,11 +10,11 @@ class PostAdmin(SummernoteModelAdmin):
     field filter, fields to prepopulate and rich-text editor.
     """
 
-    list_display = ('title', 'slug', 'status', 'created_on')
-    search_field = ['title', 'content']
-    list_filter = ('status', 'created_on',)
-    prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('content',)
+    list_display = ('caption', 'slug', 'status', 'created_at')
+    search_field = ['caption', 'body']
+    list_filter = ('status', 'created_at',)
+    prepopulated_fields = {'slug': ('caption',)}
+    summernote_fields = ('body',)
 
 # Registering Comment Model
 admin.site.register(Comment)

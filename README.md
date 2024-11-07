@@ -47,7 +47,7 @@ The site is live can be access [here](https://blogspace-97bdcd968196.herokuapp.c
 ## Database Diagrams
 This is the diagram of what database is going to be stored on my blog site. The database will have three tables, post, user and comments. All three of them will be connected to each other via the foreign key. 
 
-![database diagram](static/screenshots/database-diagram.png)
+![database diagram](static/screenshots/database_diagram.png)
 
 
 ## User Stories
@@ -220,7 +220,7 @@ To see the full list of the User Stories for BlogSpace, click [here](https://git
 
     - Looking at post comment via the admin, the approve boolean is left unchecked. which means it is still invisible to public except the user who posted it. 
 
-    ![Approve Comment](static/screenshots/User-Story-Approve-Comments-(2).png)
+    ![Approve Comment](static/screenshots/User_Story-Approve-Comments-(2).png)
 
 ## Testing
 

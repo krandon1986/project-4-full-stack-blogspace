@@ -9,21 +9,21 @@ class Post(models.Model):
     """
     Store a single blog post entry related to :model: `auth.User`.
     """
-    title = models.CharField(max_length=200, unique=True)
+    caption = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    featured_image = CloudinaryField('image', default='placeholder')
-    content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    chosen_image = CloudinaryField('image', default='placeholder')
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["created_on"]
+        ordering = ["created_at"]
 
     def __str__(self):
-        return f"{self.title} | written by {self.author}"
+        return f"{self.caption} | posted by {self.writer}"
 
 # Creating a Comment Model
 class Comment(models.Model):
@@ -32,13 +32,13 @@ class Comment(models.Model):
     and :model: `blog.Post`.
     """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="writer")
     body = models.TextField()
-    approved = models.BooleanField(default=False)
-    created_on = models.DateTimeField(auto_now_add=True)
+    approved_comment = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["created_on"]
+        ordering = ["created_at"]
 
     def __str__(self):
-        return f"{self.body} by {self.author}"
+        return f"{self.body} by {self.writer}"

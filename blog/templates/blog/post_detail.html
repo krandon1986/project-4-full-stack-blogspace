@@ -5,10 +5,10 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!--Post title in h1 tags-->
-                <h1 class="post_list">{{ post.title }}</h1>
+                <h1 class="post_list">{{ post.caption }}</h1>
                 <!--Post author goes here | the post's created date goes here-->
                 <p class="post-subtitle">
-                    {{ post.author }} | {{ post.created_on }} {% if request.user.is_superuser %}
+                    {{ post.writer }} | {{ post.created_at }} {% if request.user.is_superuser %}
                     <small class="m1-3">
                         <a href="{% url 'edit_blog' post.slug %}">Edit</a>
                         <a class="text-danger" href="{% url 'delete_blog' post.slug %}">Delete</a>
@@ -30,7 +30,7 @@
                 <!--The post content goes inside the card-text-->
                 <!--Use the | safe filter inside the template tags-->
                 <article class="card-text">
-                    {{ post.content | safe }}
+                    {{ post.body | safe }}
                 </article>
             </div>
         </div>
@@ -52,22 +52,22 @@
                 <!-- We want a for loop inside the empty control tags to interate through each
                 coment in comments -->
                 {% for comment in comments %}
-                <div class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
+                <div class="p-2 comments {% if not comment.approved and comment.writer == user %} faded{% elif not comment.approved_comment %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        {{ comment.author }}
+                        {{ comment.writer }}
                         <span class="font-weight-normal">
-                            {{ comment.created_on }}
+                            {{ comment.created_at }}
                         </span>
                         wrote:
                     </p>
                     <div id="comment{{ comment.id }}">
                         {{ comment.body | linebreaks }}
                     </div>
-                    {% if not comment.approved and comment.author == user %}
+                    {% if not comment.approved and comment.writer == user %}
                     <p class="approval">
                         This comment is awaiting approval
                     </p>
-                    {% endif %} {% if user.is_authenticated and comment.author == user %}
+                    {% endif %} {% if user.is_authenticated and comment.writer == user %}
                     <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
                     <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}

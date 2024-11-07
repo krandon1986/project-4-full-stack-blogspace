@@ -11,22 +11,22 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">
-                                {% if "placeholder" in post.featured_image.url %}
+                                {% if "placeholder" in post.chosen_image.url %}
                                 <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image" />
                                 {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}" />
+                                <img class="card-img-top" src=" {{ post.chosen_image.url }}" alt="{{ post.caption }}" />
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
+                                    <p class="author">Author: {{ post.writer }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                <h2 class="card-title">{{ post.title }}</h2>
+                                <h2 class="card-title">{{ post.caption }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
 
                             <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on }}</p>
+                            <p class="card-text text-muted h6">{{ post.created_at }}</p>
                             {% if request.user.is_superuser %}
                             <small class="m1-3">
                                 <a href="{% url 'edit_blog' post.slug %}">Edit</a>
